@@ -1,0 +1,57 @@
+无参考的图像评价体系
+
+一、简要介绍
+
+		目前从事冷冻电镜方面的研究，对于冷冻电镜拍摄图像进行聚类并求平均图后，需要对聚类的好坏进行评价并反馈，我从无参考图像质量评价的方向入手，基于图像清晰度质量来评价聚类。在了解NRIQA后，我从几十个的算子中挑选出了适合冷冻电镜聚类平均图的21个算子（可以再加，欢迎提议），1 Kurtosis-NoDC 2 Mean of Image 3 Variance of Image 4 Relative Variance 5 Contrast 6 T-sobel 7 T-scharr 8 Entropy 9 2D_entropy(if <0 so =0 ) 10 Squared horizontal gradient 11 Squared vertical gradient 12 Robert gradient 13 Prewitt gradient 14 Auto-Correlation 15 SMD 16 SMD2 17 EVA 18 NRSS 负值 19 voll 20 Sobel_5 21 Mendelsohn and Mayall ，其中对于2维熵的得分只取正值，对于NRSS的得分进行调整为图像越清晰得分越大。 再计算完成一个得分表后，我对每个算子的不同图像得分进行标准化，然后将不同图像的不同算子的得分进行相加得出图像总体得分。为了确定每个图象评价的可靠性，我采用数据离散程度评价每个图象中不同评价函数得分的排名，如果排名差异越大越不可靠，反之打分越可靠。（对于聚类的好坏，我需要评价一组图像，我对每幅图像的得分离散程度进行变换得到分数权重，再加权进行总分）
+
+
+
+二、算子简述
+
+1 Kurtosis-NoDC
+
+2 Mean of Image
+
+3 Variance of Image
+
+4 Relative Variance
+
+5 Contrast 
+
+6 T-sobel
+
+7 T-scharr
+
+8 Entropy
+
+9 2D_entropy(if <0 so =0 )
+
+
+
+10 Squared horizontal gradient
+
+11 Squared vertical gradient
+
+12 Robert gradient
+
+13 Prewitt gradient
+
+14 Auto-Correlation
+
+15 SMD
+
+16 SMD2
+
+17 EVA
+
+18 NRSS 负值
+
+19 voll
+
+20 Sobel_5
+
+21 Mendelsohn and Mayall
+
+
+
+三、代码实现
